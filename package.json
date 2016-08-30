@@ -7,9 +7,6 @@
   "scripts": {
     "test": "console.log(\"hello world\")"
   },
-  "engines": {
-    "node": ">=6.0.0",
-  },
   "scripts": {
   "start": "node index.js"
   },
