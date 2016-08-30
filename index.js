@@ -33,7 +33,7 @@ const compliments = [
 // For this to work we will first need to invite the bot to the channel
 let currentCompliment = 0;
 
-bot.on('message', function(data) {
+bot.on('message', (data) => {
   // We define a RegExp pattern the bot is looking for
   // In this case it is looking for messages of the form "[Cc]omplement @username"
   // The [Cc] means that we accept the message to start with either a large C or a small c.
@@ -46,13 +46,11 @@ bot.on('message', function(data) {
       // The bot gets the user name from the user ID, and attempts to send the user a random complement
       bot.getUserById(user).then(({ name }) => {
         bot.postMessageToUser(name, compliments[currentCompliment]);
-        currentCompliment =
-          // We increase the current compliment with one
-          (currentCompliment + 1 )
+        currentCompliment = (currentCompliment + 1 ) % compliments.length;
           // We are suing modulus here
           // It will make sure we never go outside of the array size
           // This will result in the following pattern with out current array 0, 1, 2, 3, 0, 1, 2, 3, 0, ...
-          % compliments.length;
+
       });
     }
   }
