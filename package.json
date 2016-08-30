@@ -1,0 +1,22 @@
+{
+  "name": "slackbot",
+  "version": "1.0.0",
+  "description": "A bot for things",
+  "main": "index.js",
+  "scripts": {
+    "test": "console.log(\"hello world\")"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rulfsnes/slackbot.git"
+  },
+  "keywords": [
+    "slack"
+  ],
+  "author": "Rasmus",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rulfsnes/slackbot/issues"
+  },
+  "homepage": "https://github.com/rulfsnes/slackbot#readme"
+}
