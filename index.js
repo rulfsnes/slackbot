@@ -4,7 +4,7 @@ const SlackBot = require('slackbots');
 // We create a new Slack bot using the Token and name from before
 const bot = new SlackBot({
   // Replace <SLACK_TOKEN> with the token from step E
-  token: 'xoxb-74489912548-HLQ3mnlIkH2HlFEoLvZGExP7',
+  token: 'xoxb-74489912548-b9BsmEH5x0xeGwPROLl1WHyS',
   // Replace <BOT_NAME> with the name from step E
   name: '@raul'
 });
@@ -31,9 +31,10 @@ const compliments = [
 // This will manage messages that are posted to the channel the bot is connect to
 // Using it we can make the bot respond to what is posted
 // For this to work we will first need to invite the bot to the channel
+// The current compliment
 let currentCompliment = 0;
 
-bot.on('message', (data) => {
+bot.on('message', function(data) {
   // We define a RegExp pattern the bot is looking for
   // In this case it is looking for messages of the form "[Cc]omplement @username"
   // The [Cc] means that we accept the message to start with either a large C or a small c.
@@ -46,11 +47,13 @@ bot.on('message', (data) => {
       // The bot gets the user name from the user ID, and attempts to send the user a random complement
       bot.getUserById(user).then(({ name }) => {
         bot.postMessageToUser(name, compliments[currentCompliment]);
-        currentCompliment = (currentCompliment + 1 ) % compliments.length;
+        currentCompliment =
+          // We increase the current compliment with one
+          (currentCompliment + 1 )
           // We are suing modulus here
           // It will make sure we never go outside of the array size
           // This will result in the following pattern with out current array 0, 1, 2, 3, 0, 1, 2, 3, 0, ...
-
+          % compliments.length;
       });
     }
   }
